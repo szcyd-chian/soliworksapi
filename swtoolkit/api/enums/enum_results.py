@@ -27,3 +27,10 @@ class CustomInfoSetResult(Enum):
     NOT_PRESENT = 1
     OK = 0
     TYPE_MISMATCH = 2
+
+
+class CustomLinkSetResult(Enum):
+    LEGACY = 2
+    NOT_PRESENT = 1
+    OK = 0
+    USER_PROP = 3

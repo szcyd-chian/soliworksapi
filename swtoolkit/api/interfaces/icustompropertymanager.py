@@ -66,32 +66,40 @@ class ICustomPropertyManager:
 
     def _get_all3(self):
 
-        arg1 = win32com.client.VARIANT(
-            pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None
-        )
-        arg2 = win32com.client.VARIANT(
-            pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None
-        )
-        arg3 = win32com.client.VARIANT(
-            pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None
-        )
-        arg4 = win32com.client.VARIANT(
-            pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None
-        )
-        arg5 = win32com.client.VARIANT(
-            pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None
-        )
+        arg1 = win32com.client.VARIANT(pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None)
+        arg2 = win32com.client.VARIANT(pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None)
+        arg3 = win32com.client.VARIANT(pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None)
+        arg4 = win32com.client.VARIANT(pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None)
+        arg5 = win32com.client.VARIANT(pythoncom.VT_BYREF | pythoncom.VT_VARIANT, None)
 
         GetAll3 = self._instance.GetAll3
         GetAll3(arg1, arg2, arg3, arg4, arg5)
 
         return arg1, arg2, arg3, arg4, arg5
 
-    def get_type2(self):
-        pass
+    def _get_type2(self, field_name):
 
-    def is_custom_property_editable(self):
-        pass
+        arg1 = win32com.client.VARIANT(pythoncom.VT_BSTR, field_name)
 
-    def link_property(self):
-        pass
+        GetType2 = self._instance.GetType2
+        retval = GetType2(arg1)
+
+        return retval
+
+    def _is_custom_property_editable(self, property_name, configuration_name):
+
+        arg1 = win32com.client.VARIANT(pythoncom.VT_BSTR, property_name)
+        arg2 = win32com.client.VARIANT(pythoncom.VT_BSTR, configuration_name)
+
+        IsCustomPropertyEditable = self._instance.IsCustomPropertyEditable
+        retval = IsCustomPropertyEditable(arg1, arg2)
+        return retval
+
+    def _link_property(self, field_name, field_link):
+
+        arg1 = win32com.client.VARIANT(pythoncom.VT_BSTR, field_name)
+        arg1 = win32com.client.VARIANT(pythoncom.VT_BOOL, field_link)
+
+        LinkProperty = self._instance.LinkProperty
+        retval = LinkProperty(field_name, field_link)
+        return retval
